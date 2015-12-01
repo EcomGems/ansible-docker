@@ -25,6 +25,11 @@
     name: python-pip
     state: present
 
+- name: Update pip to latest
+  pip:
+    name: pip
+    state: latest
+
 - name: Install Docker Python library
   pip:
     name: docker-py
