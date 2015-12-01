@@ -1,0 +1,31 @@
+---
+- name: Check whether docker exists
+  shell: command -v docker >/dev/null 2>&1
+  ignore_errors: True
+  register: result
+
+- name: Run docker official install script
+  shell: curl -sSL https://get.docker.com/ | sudo sh
+  when: result | failed
+
+- name: Ensure "docker" group present
+  group:
+    name: docker
+    state: present
+    system: yes
+
+- name: Enable docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Ensire that 'pip' is installed
+  apt:
+    name: python-pip
+    state: present
+
+- name: Install Docker Python library
+  pip:
+    name: docker-py
+    state: present

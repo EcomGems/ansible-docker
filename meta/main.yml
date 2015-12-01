@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Igor Goltsov
+  description: Docker for Debian
+  license: MIT
+
+  platforms:
+    - name: Debian
+      versions:
+        - 8
+  categories:
+    - system
+
+dependencies: []
