@@ -1,11 +1,16 @@
 ---
+- name: Ensure "curl" is installed
+  apt:
+    name: curl
+    state: present
+
 - name: Check whether docker exists
   shell: command -v docker >/dev/null 2>&1
   ignore_errors: True
   register: result
 
 - name: Run docker official install script
-  shell: curl -sSL https://get.docker.com/ | sudo sh
+  shell: curl -sSL https://get.docker.com/ | sh
   when: result | failed
 
 - name: Ensure "docker" group present
