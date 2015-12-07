@@ -11,6 +11,7 @@
 
 - name: Run docker official install script
   shell: curl -sSL https://get.docker.com/ | sh
+  ignore_errors: True
   when: result | failed
 
 - name: Ensure "docker" group present
